@@ -12,12 +12,12 @@
         <!--Task Add View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="TaskAddViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskAddViewController" modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="TaskAddViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3kn-LM-yt2">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="日付を入力してください" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3kn-LM-yt2">
                                 <rect key="frame" x="20" y="339" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -32,8 +32,11 @@
                                 <state key="normal" title="タスクを追加して一覧に戻る">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="goBack:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OFY-j8-H26"/>
+                                </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TbA-tw-Bgb">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="タイトルを入力してください" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TbA-tw-Bgb">
                                 <rect key="frame" x="20" y="255" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -56,6 +59,10 @@
                             <constraint firstItem="YVE-ZP-enR" firstAttribute="leading" secondItem="3kn-LM-yt2" secondAttribute="leading" id="vyT-7c-N43"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dateAddText" destination="3kn-LM-yt2" id="FNf-iC-Mm3"/>
+                        <outlet property="titleAddText" destination="TbA-tw-Bgb" id="ecl-ub-3hd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -64,7 +71,7 @@
         <!--お気に入り-->
         <scene sceneID="3eE-zk-FRY">
             <objects>
-                <viewController id="1Am-QL-7mZ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoriteListViewController" id="1Am-QL-7mZ" customClass="FavoriteListViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lnR-8d-mAE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -73,7 +80,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="uRC-oC-Ufg">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoriteCell" id="uRC-oC-Ufg" customClass="FavoriteListTableViewCell" customModule="ToDoApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="48.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uRC-oC-Ufg" id="Jst-uf-k7P">
@@ -105,6 +112,10 @@
                                                 <constraint firstItem="HHo-7j-AA2" firstAttribute="height" secondItem="Jst-uf-k7P" secondAttribute="height" multiplier="1:2" id="yac-X4-ggd"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="7n9-mf-wmO" id="n6K-Kv-JCW"/>
+                                            <outlet property="titleLabel" destination="HHo-7j-AA2" id="7us-O4-vQV"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -119,32 +130,27 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="お気に入り" image="heart" catalog="system" id="srj-k5-EwR"/>
+                    <connections>
+                        <outlet property="FavoriteTableView" destination="nix-v4-oRy" id="5Su-HW-T0Z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gVh-Nc-m3V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1369.5652173913045" y="393.75"/>
+            <point key="canvasLocation" x="1370" y="397"/>
         </scene>
         <!--タスク一覧-->
         <scene sceneID="nUu-mo-mQG">
             <objects>
-                <viewController id="WfN-Hb-eeT" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TaskListViewController" id="WfN-Hb-eeT" customClass="TaskListViewController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dTN-NS-7jS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beO-Sq-d5W">
-                                <rect key="frame" x="304" y="703.5" width="80" height="79"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="bLp-94-wiR"/>
-                                    <constraint firstAttribute="width" constant="80" id="xbK-K5-2q0"/>
-                                </constraints>
-                                <state key="normal" backgroundImage="plus.circle.fill" catalog="system"/>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E7R-bm-x9G">
                                 <rect key="frame" x="0.0" y="44" width="414" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="6BZ-dT-1BA">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TaskCell" id="6BZ-dT-1BA" customClass="TaskListTableViewCell" customModule="ToDoApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="48.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6BZ-dT-1BA" id="ESB-Rc-AIk">
@@ -166,6 +172,9 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxF-Hq-HXO">
                                                     <rect key="frame" x="330" y="13.5" width="24" height="22"/>
                                                     <state key="normal" backgroundImage="heart" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="FavoriteSelectDidTap:" destination="6BZ-dT-1BA" eventType="touchUpInside" id="iBj-Hk-fzy"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -183,9 +192,25 @@
                                                 <constraint firstItem="hxF-Hq-HXO" firstAttribute="centerY" secondItem="ESB-Rc-AIk" secondAttribute="centerY" id="sMr-T1-t4q"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="A36-LG-oKM" id="7hs-CU-SFz"/>
+                                            <outlet property="favoriteButton" destination="hxF-Hq-HXO" id="s2k-Wp-10p"/>
+                                            <outlet property="titleLabel" destination="mRi-6e-mBR" id="50g-NT-1Lg"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beO-Sq-d5W">
+                                <rect key="frame" x="304" y="703.5" width="80" height="79"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="bLp-94-wiR"/>
+                                    <constraint firstAttribute="width" constant="80" id="xbK-K5-2q0"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="plus.circle.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="taskAddDidTap:" destination="WfN-Hb-eeT" eventType="touchUpInside" id="FaE-X9-Rh3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Exg-Y1-66z"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -199,6 +224,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="タスク一覧" image="list.dash" catalog="system" id="t6R-8N-gy1"/>
+                    <connections>
+                        <outlet property="taskTableView" destination="E7R-bm-x9G" id="Hp0-1p-06L"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Czg-m3-toO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -207,7 +235,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="qEm-eO-W9d">
             <objects>
-                <tabBarController id="ccU-7l-nec" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="ccU-7l-nec" customClass="TabBarController" customModule="ToDoApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gnY-Wl-PQk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
