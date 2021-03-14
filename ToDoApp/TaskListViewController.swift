@@ -20,7 +20,7 @@ class TaskListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
-        tasks = UserDefaults.standard.array(forKey: "TasksKey") as? [[String: Any]] ?? []
+        //tasks = UserDefaults.standard.array(forKey: "TasksKey") as? [[String: Any]] ?? []
         taskTableView.reloadData()
     }
     
@@ -46,7 +46,7 @@ extension TaskListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             tasks.remove(at: indexPath.row)
-            UserDefaults.standard.setValue(tasks, forKey: "TasksKey")
+            //UserDefaults.standard.setValue(tasks, forKey: "TasksKey")
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
     }

@@ -8,7 +8,7 @@
 import UIKit
 
 class TaskListTableViewCell: UITableViewCell {
-    var tasks = UserDefaults.standard.array(forKey: "TasksKey") as? [[String: Any]] ?? []
+    //var tasks = UserDefaults.standard.array(forKey: "TasksKey") as? [[String: Any]] ?? []
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -38,7 +38,7 @@ class TaskListTableViewCell: UITableViewCell {
         favoriteStatus.toggle()
         task["isFavorite"] = favoriteStatus
         tasks[indexPath.row] = task
-        UserDefaults.standard.set(tasks, forKey: "TasksKey")
+        //UserDefaults.standard.set(tasks, forKey: "TasksKey")
         if favoriteStatus == false {
             let displayStatus = UIImage(systemName: "suit.heart")
             favoriteButton.setImage(displayStatus, for: .normal)

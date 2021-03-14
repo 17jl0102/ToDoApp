@@ -59,9 +59,9 @@ class TaskAddViewController: UIViewController {
         }
         
         let task: [String: Any] = ["title": title, "date": date, "isFavorite": false]
-        var savedTasks = UserDefaults.standard.array(forKey: "TasksKey") as? [[String: Any]] ?? []
+        //var savedTasks = UserDefaults.standard.array(forKey: "TasksKey") as? [[String: Any]] ?? []
         savedTasks.append(task)
-        UserDefaults.standard.set(savedTasks, forKey: "TasksKey")
+        //UserDefaults.standard.set(savedTasks, forKey: "TasksKey")
         dismiss(animated: true, completion: nil)
     }
     
