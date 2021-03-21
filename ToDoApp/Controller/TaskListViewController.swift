@@ -10,7 +10,7 @@ import UIKit
 class TaskListViewController: UIViewController {
 
     @IBOutlet weak var taskTableView: UITableView!
-    var tasks: [[String: Any]] = []
+    var tasks: [Task] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,15 @@ class TaskListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
-        //tasks = UserDefaults.standard.array(forKey: "TasksKey") as? [[String: Any]] ?? []
+<<<<<<< HEAD:ToDoApp/Controller/TaskListViewController.swift
+        
+        let tasksData = UserDefaults.standard.data(forKey: "TasksKey")
+        guard let data = tasksData else {return}
+        let unArchivedData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Task] ?? []
+        tasks = unArchivedData ?? []
+=======
+        tasks = UserDefaults.standard.array(forKey: "TasksKey") as? [[String: Any]] ?? []
+>>>>>>> parent of f9cedbb... 途中提出:ToDoApp/TaskListViewController.swift
         taskTableView.reloadData()
     }
     
@@ -46,7 +54,12 @@ extension TaskListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
             tasks.remove(at: indexPath.row)
-            //UserDefaults.standard.setValue(tasks, forKey: "TasksKey")
+<<<<<<< HEAD:ToDoApp/Controller/TaskListViewController.swift
+            let tasksArchived = try! NSKeyedArchiver.archivedData(withRootObject: tasks, requiringSecureCoding: false)
+            UserDefaults.standard.set(tasksArchived, forKey: "TasksKey")
+=======
+            UserDefaults.standard.setValue(tasks, forKey: "TasksKey")
+>>>>>>> parent of f9cedbb... 途中提出:ToDoApp/TaskListViewController.swift
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
     }
