@@ -8,24 +8,21 @@
 import UIKit
 
 class TaskListTableViewCell: UITableViewCell {
-<<<<<<< HEAD:ToDoApp/View/TaskListTableViewCell.swift
-    var tasks: [Task] = []
-    let tasksData = UserDefaults.standard.data(forKey: "TasksKey")
-    guard let data = tasksData else {return}
-    let unArchivedData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Task] ?? []
-    tasks = unArchivedData ?? []
- 
-=======
-    var tasks = UserDefaults.standard.array(forKey: "TasksKey") as? [[String: Any]] ?? []
+    //    var tasks: [Task] = []
+    //    let tasksData = UserDefaults.standard.data(forKey: "TasksKey")
+    //    guard let data = tasksData else {return}
+    //    let unArchivedData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Task] ?? []
+    //    tasks = unArchivedData ?? []
+    //
+    var index: Int = 0
+    var task: Task!
     
->>>>>>> parent of f9cedbb... 途中提出:ToDoApp/TaskListTableViewCell.swift
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var favoriteButton: UIButton!
     
-    var indexPath = IndexPath()
     
     func setup(task: Task, indexPath: IndexPath) {
         titleLabel.text = task.title
@@ -39,26 +36,29 @@ class TaskListTableViewCell: UITableViewCell {
             let displayStatus = UIImage(systemName: "suit.heart.fill")
             favoriteButton.setImage(displayStatus, for: .normal)
         }
-        self.tasks = task
+        
+        self.index = indexPath.row
+        self.task = task
     }
     
     @IBAction func FavoriteSelectDidTap(_ sender: UIButton) {
-        var favoriteStatus = task.isFavorite
-        favoriteStatus.toggle()
-<<<<<<< HEAD:ToDoApp/View/TaskListTableViewCell.swift
-        Task(title: task.title, date: task.date, isFavorite: favoriteStatus)
-=======
-        task["isFavorite"] = favoriteStatus
-        tasks[indexPath.row] = task
-        UserDefaults.standard.set(tasks, forKey: "TasksKey")
->>>>>>> parent of f9cedbb... 途中提出:ToDoApp/TaskListTableViewCell.swift
-        if favoriteStatus == false {
+        let tasksData = UserDefaults.standard.data(forKey: "TasksKey")
+        guard let data = tasksData else {return}
+        let unArchivedData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Task] ?? []
+        var tasks = unArchivedData ?? []
+      
+        var updateTask = Task(title: task.title, date: task.date, isFavorite: !task.isFavorite)
+        tasks[index] = updateTask
+        if updateTask.isFavorite == false {
             let displayStatus = UIImage(systemName: "suit.heart")
             favoriteButton.setImage(displayStatus, for: .normal)
         } else {
             let displayStatus = UIImage(systemName: "suit.heart.fill")
             favoriteButton.setImage(displayStatus, for: .normal)
         }
+        let tasksArchived = try! NSKeyedArchiver.archivedData(withRootObject: tasks, requiringSecureCoding: false)
+        UserDefaults.standard.set(tasksArchived, forKey: "TasksKey")
+        UserDefaults.standard.synchronize()
     }
 }
 

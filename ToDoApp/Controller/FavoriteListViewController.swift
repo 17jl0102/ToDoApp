@@ -20,14 +20,10 @@ class FavoriteListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-<<<<<<< HEAD:ToDoApp/Controller/FavoriteListViewController.swift
         let tasksData = UserDefaults.standard.data(forKey: "TasksKey")
         guard let data = tasksData else {return}
         let unArchivedData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Task] ?? []
         let tasks = unArchivedData ?? []
-=======
-        let tasks = UserDefaults.standard.array(forKey: "TasksKey") as? [[String: Any]] ?? []
->>>>>>> parent of f9cedbb... 途中提出:ToDoApp/FavoriteListViewController.swift
         favoriteTasks = favoriteFilter(FilterList: tasks)
         FavoriteTableView.reloadData()
     }

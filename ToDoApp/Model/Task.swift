@@ -28,7 +28,7 @@ class Task: NSObject, NSCoding {
     required init?(coder aDecoder: NSCoder) {
         title = aDecoder.decodeObject(forKey: "title") as! String
         date = aDecoder.decodeObject(forKey: "date") as! String
-        isFavorite = aDecoder.decodeObject(forKey: "isFavorite") as! Bool
+        isFavorite = aDecoder.decodeBool(forKey: "isFavorite")
     }
     
     

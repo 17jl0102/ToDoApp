@@ -58,19 +58,15 @@ class TaskAddViewController: UIViewController {
             return
         }
         
-<<<<<<< HEAD:ToDoApp/Controller/TaskAddViewController.swift
-        var tasks = [Task]()
+        let tasksData = UserDefaults.standard.data(forKey: "TasksKey")
+        guard let data = tasksData else {return}
+        let unArchivedData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Task] ?? []
+        var tasks = unArchivedData ?? []
         let task = Task(title: title, date: date, isFavorite: false)
         tasks.append(task)
         let tasksArchived = try! NSKeyedArchiver.archivedData(withRootObject: tasks, requiringSecureCoding: false)
         UserDefaults.standard.set(tasksArchived, forKey: "TasksKey")
         UserDefaults.standard.synchronize()
-=======
-        let task: [String: Any] = ["title": title, "date": date, "isFavorite": false]
-        var savedTasks = UserDefaults.standard.array(forKey: "TasksKey") as? [[String: Any]] ?? []
-        savedTasks.append(task)
-        UserDefaults.standard.set(savedTasks, forKey: "TasksKey")
->>>>>>> parent of f9cedbb... 途中提出:ToDoApp/TaskAddViewController.swift
         dismiss(animated: true, completion: nil)
     }
     
