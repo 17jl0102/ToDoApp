@@ -20,10 +20,7 @@ class TaskListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(animated)
-        let tasksData = UserDefaults.standard.data(forKey: "TasksKey")
-        guard let data = tasksData else {return}
-        let unArchivedData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Task] ?? []
-        tasks = unArchivedData ?? []
+        tasks = TaskManager.tasks()
         taskTableView.reloadData()
     }
     

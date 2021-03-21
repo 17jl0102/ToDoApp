@@ -58,15 +58,8 @@ class TaskAddViewController: UIViewController {
             return
         }
         
-        let tasksData = UserDefaults.standard.data(forKey: "TasksKey")
-        guard let data = tasksData else {return}
-        let unArchivedData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Task] ?? []
-        var tasks = unArchivedData ?? []
-        let task = Task(title: title, date: date, isFavorite: false)
-        tasks.append(task)
-        let tasksArchived = try! NSKeyedArchiver.archivedData(withRootObject: tasks, requiringSecureCoding: false)
-        UserDefaults.standard.set(tasksArchived, forKey: "TasksKey")
-        UserDefaults.standard.synchronize()
+       let task = Task(title: title, date: date, isFavorite: false)
+        TaskManager.addTask(task: task)
         dismiss(animated: true, completion: nil)
     }
     

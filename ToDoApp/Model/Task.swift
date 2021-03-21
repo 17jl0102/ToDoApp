@@ -30,11 +30,4 @@ class Task: NSObject, NSCoding {
         date = aDecoder.decodeObject(forKey: "date") as! String
         isFavorite = aDecoder.decodeBool(forKey: "isFavorite")
     }
-    
-    
-//    static var saveTasks : [Task] = [Task(title: "task1", date: "2021/3/14", isFavorite: false),
-//                                     Task(title: "task1", date: "2021/3/14", isFavorite: false),
-//                                     Task(title: "task1", date: "2021/3/14", isFavorite: false),
-//                                     Task(title: "task1", date: "2021/3/14", isFavorite: false),
-//                                     Task(title: "task1", date: "2021/3/14", isFavorite: false)]
 }

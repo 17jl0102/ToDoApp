@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		804E977D2607138600F2FD8E /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804E977C2607138600F2FD8E /* TaskManager.swift */; };
 		8052395B25FC8EFD00AC1A5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052395A25FC8EFD00AC1A5B /* AppDelegate.swift */; };
 		8052395D25FC8EFD00AC1A5B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052395C25FC8EFD00AC1A5B /* SceneDelegate.swift */; };
 		8052395F25FC8EFD00AC1A5B /* TaskAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8052395E25FC8EFD00AC1A5B /* TaskAddViewController.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		804E977C2607138600F2FD8E /* TaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
 		8052395725FC8EFD00AC1A5B /* ToDoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8052395A25FC8EFD00AC1A5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8052395C25FC8EFD00AC1A5B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				805239CD25FCB28200AC1A5B /* Task.swift */,
+				804E977C2607138600F2FD8E /* TaskManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			files = (
 				8052395F25FC8EFD00AC1A5B /* TaskAddViewController.swift in Sources */,
 				805239AB25FCA7F100AC1A5B /* FavoriteListTableViewCell.swift in Sources */,
+				804E977D2607138600F2FD8E /* TaskManager.swift in Sources */,
 				80B998E4260703500074A9E4 /* TabBarController.swift in Sources */,
 				805239A125FCA78500AC1A5B /* FavoriteListViewController.swift in Sources */,
 				8052395B25FC8EFD00AC1A5B /* AppDelegate.swift in Sources */,

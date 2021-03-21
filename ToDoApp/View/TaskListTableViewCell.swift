@@ -8,12 +8,7 @@
 import UIKit
 
 class TaskListTableViewCell: UITableViewCell {
-    //    var tasks: [Task] = []
-    //    let tasksData = UserDefaults.standard.data(forKey: "TasksKey")
-    //    guard let data = tasksData else {return}
-    //    let unArchivedData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Task] ?? []
-    //    tasks = unArchivedData ?? []
-    //
+    
     var index: Int = 0
     var task: Task!
     
@@ -47,7 +42,7 @@ class TaskListTableViewCell: UITableViewCell {
         let unArchivedData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Task] ?? []
         var tasks = unArchivedData ?? []
       
-        var updateTask = Task(title: task.title, date: task.date, isFavorite: !task.isFavorite)
+        let updateTask = Task(title: task.title, date: task.date, isFavorite: !task.isFavorite)
         tasks[index] = updateTask
         if updateTask.isFavorite == false {
             let displayStatus = UIImage(systemName: "suit.heart")
