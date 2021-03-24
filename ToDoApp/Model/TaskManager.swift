@@ -17,12 +17,12 @@ struct TaskManager {
     
     static func addTask(task: Task) {
         let tasksData = UserDefaults.standard.data(forKey: "TasksKey")
-        guard let data = tasksData else {return}
-        let unArchivedData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Task] ?? []
+        let unArchivedData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(tasksData ?? Data()) as? [Task] ?? []
         var tasks = unArchivedData ?? []
         tasks.append(task)
         let tasksArchived = try! NSKeyedArchiver.archivedData(withRootObject: tasks, requiringSecureCoding: false)
         UserDefaults.standard.set(tasksArchived, forKey: "TasksKey")
         UserDefaults.standard.synchronize()
     }
+        
 }

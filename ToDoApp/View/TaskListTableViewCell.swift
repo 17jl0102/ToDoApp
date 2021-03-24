@@ -20,40 +20,33 @@ class TaskListTableViewCell: UITableViewCell {
     
     
     func setup(task: Task, indexPath: IndexPath) {
+        self.index = indexPath.row
+        self.task = task
         titleLabel.text = task.title
         dateLabel.text = task.date
         
-        let favoriteStatus = task.isFavorite
-        if favoriteStatus == false {
+        favoriteReverse(isfavorite: task.isFavorite)
+    }
+    
+    func favoriteReverse(isfavorite: Bool) {
+        if isfavorite == false {
             let displayStatus = UIImage(systemName: "suit.heart")
-            favoriteButton.setImage(displayStatus, for: .normal)
+            self.favoriteButton.setImage(displayStatus, for: .normal)
         } else {
             let displayStatus = UIImage(systemName: "suit.heart.fill")
-            favoriteButton.setImage(displayStatus, for: .normal)
+            self.favoriteButton.setImage(displayStatus, for: .normal)
         }
-        
-        self.index = indexPath.row
-        self.task = task
     }
     
     @IBAction func FavoriteSelectDidTap(_ sender: UIButton) {
-        let tasksData = UserDefaults.standard.data(forKey: "TasksKey")
-        guard let data = tasksData else {return}
-        let unArchivedData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Task] ?? []
-        var tasks = unArchivedData ?? []
-      
-        let updateTask = Task(title: task.title, date: task.date, isFavorite: !task.isFavorite)
+        var tasks = TaskManager.tasks()
+        let updateTask = Task(title: tasks[index].title, date: tasks[index].date, isFavorite: !tasks[index].isFavorite)
         tasks[index] = updateTask
-        if updateTask.isFavorite == false {
-            let displayStatus = UIImage(systemName: "suit.heart")
-            favoriteButton.setImage(displayStatus, for: .normal)
-        } else {
-            let displayStatus = UIImage(systemName: "suit.heart.fill")
-            favoriteButton.setImage(displayStatus, for: .normal)
-        }
         let tasksArchived = try! NSKeyedArchiver.archivedData(withRootObject: tasks, requiringSecureCoding: false)
         UserDefaults.standard.set(tasksArchived, forKey: "TasksKey")
         UserDefaults.standard.synchronize()
+        
+        favoriteReverse(isfavorite: tasks[index].isFavorite)
     }
 }
 
