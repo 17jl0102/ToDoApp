@@ -58,10 +58,9 @@ class TaskAddViewController: UIViewController {
             return
         }
         
-       let task = Task(title: title, date: date, isFavorite: false)
+        let task = Task(title: title, date: date, isFavorite: false)
         TaskManager.addTask(task: task)
         dismiss(animated: true, completion: nil)
     }
-    
 }
 

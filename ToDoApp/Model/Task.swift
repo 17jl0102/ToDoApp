@@ -24,7 +24,7 @@ class Task: NSObject, NSCoding {
         aCoder.encode(date, forKey: "date")
         aCoder.encode(isFavorite, forKey: "isFavorite")
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         title = aDecoder.decodeObject(forKey: "title") as! String
         date = aDecoder.decodeObject(forKey: "date") as! String

@@ -38,18 +38,15 @@ extension TaskListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = taskTableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskListTableViewCell
         cell.setup(task: tasks[indexPath.row], indexPath: indexPath)
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == UITableViewCell.EditingStyle.delete {
-//            tasks.remove(at: indexPath.row)
-//            let tasksArchived = try! NSKeyedArchiver.archivedData(withRootObject: tasks, requiringSecureCoding: false)
-//            UserDefaults.standard.set(tasksArchived, forKey: "TasksKey")
-//            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
-//        }
-    
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            tasks.remove(at: indexPath.row)
+            TaskManager.taskUpdate(tasks: tasks)
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+        }
     }
     
     func tableView(_ tableview: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {

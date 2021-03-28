@@ -24,8 +24,8 @@ class TaskListTableViewCell: UITableViewCell {
         self.task = task
         titleLabel.text = task.title
         dateLabel.text = task.date
-
-    TaskManager.favoriteImageSet(isfavorite: task.isFavorite, favoriteButton: favoriteButton)
+        
+        favoriteImageSet(isfavorite: task.isFavorite, favoriteButton: favoriteButton)
     }
     
     
@@ -33,11 +33,21 @@ class TaskListTableViewCell: UITableViewCell {
         var tasks = TaskManager.tasks()
         let updateTask = Task(title: tasks[index].title, date: tasks[index].date, isFavorite: !tasks[index].isFavorite)
         tasks[index] = updateTask
-        let tasksArchived = try! NSKeyedArchiver.archivedData(withRootObject: tasks, requiringSecureCoding: false)
-        UserDefaults.standard.set(tasksArchived, forKey: "TasksKey")
+        TaskManager.taskUpdate(tasks: tasks)
         UserDefaults.standard.synchronize()
         
-        TaskManager.favoriteImageSet(isfavorite: tasks[index].isFavorite, favoriteButton: favoriteButton)
+        favoriteImageSet(isfavorite: tasks[index].isFavorite, favoriteButton: favoriteButton)
     }
+    
+    func favoriteImageSet(isfavorite: Bool, favoriteButton: UIButton) {
+        if isfavorite == false {
+            let displayStatus = UIImage(systemName: "suit.heart")
+            favoriteButton.setImage(displayStatus, for: .normal)
+        } else {
+            let displayStatus = UIImage(systemName: "suit.heart.fill")
+            favoriteButton.setImage(displayStatus, for: .normal)
+        }
+    }
+    
 }
 
