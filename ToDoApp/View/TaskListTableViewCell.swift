@@ -24,19 +24,10 @@ class TaskListTableViewCell: UITableViewCell {
         self.task = task
         titleLabel.text = task.title
         dateLabel.text = task.date
-        
-        favoriteReverse(isfavorite: task.isFavorite)
+
+    TaskManager.favoriteImageSet(isfavorite: task.isFavorite, favoriteButton: favoriteButton)
     }
     
-    func favoriteReverse(isfavorite: Bool) {
-        if isfavorite == false {
-            let displayStatus = UIImage(systemName: "suit.heart")
-            self.favoriteButton.setImage(displayStatus, for: .normal)
-        } else {
-            let displayStatus = UIImage(systemName: "suit.heart.fill")
-            self.favoriteButton.setImage(displayStatus, for: .normal)
-        }
-    }
     
     @IBAction func FavoriteSelectDidTap(_ sender: UIButton) {
         var tasks = TaskManager.tasks()
@@ -46,7 +37,7 @@ class TaskListTableViewCell: UITableViewCell {
         UserDefaults.standard.set(tasksArchived, forKey: "TasksKey")
         UserDefaults.standard.synchronize()
         
-        favoriteReverse(isfavorite: tasks[index].isFavorite)
+        TaskManager.favoriteImageSet(isfavorite: tasks[index].isFavorite, favoriteButton: favoriteButton)
     }
 }
 
